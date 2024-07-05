@@ -1,7 +1,7 @@
 const addTodoAction = {
   type: "ADD_TODO",
   todo: {
-    id: Math.floor(Math.random(100)),
+    id: null,
     name: "Learn Redux",
     complete: false,
   },
@@ -22,48 +22,30 @@ const removeGoalAction = {
 };
 
 function todos(state = [], action) {
-  const { todos, goals } = state;
-
   if (action.type === "ADD_TODO") {
-    return {
-      ...state,
-      todos: [...state.todos, action.todo],
-    };
+    if (!state.length < 1) {
+      action.todo.id = 1;
+    } else {
+      action.todo.id = state.length + 1;
+    }
+    return [...state, action.todo];
   }
+
   if (action.type === "REMOVE_TODO") {
-    return {
-      ...state,
-      todos: todos.filter((todo) => {
-        todo.id !== action.id;
-      }),
-    };
+    return state.filter((todo) => {
+      todo.id !== action.id;
+    });
   }
+
   if (action.type === "UPDATE_TODO") {
-    return {
-      ...state,
-      todos: todos.map((todo) => {
-        if (todo.id !== action.todo.id) return;
-        return (todo = action.todo);
-      }),
-    };
-  }
-  if (action.type === "ADD_GOAL") {
-    return {
-      ...state,
-      goals: [...goals, action.goal],
-    };
-  }
-  if (action.type === "REMOVE_GOAL") {
-    return {
-      ...state,
-      goals: goals.filter((goal) => {
-        goal.id !== action.id;
-      }),
-    };
+    return state.todos.map((todo) => {
+      if (todo.id !== action.todo.id) return;
+      return (todo = action.todo);
+    });
   }
 }
 
-function createStore() {
+function createStore(reducer) {
   // store should have 4 parts
   // 1. The state
   // 2. Get the state -- getState()
@@ -86,7 +68,8 @@ function createStore() {
   };
 
   const dispatch = (action) => {
-    state = todos(state, action);
+    state = reducer(state, action);
+    console.log("dispatch");
     listeners.forEach((listener) => listener());
   };
 
@@ -97,8 +80,11 @@ function createStore() {
   };
 }
 
-const store = createStore();
+const store = createStore(todos);
+
 const unsubscribe = store.subscribe(() => {
   console.log("The new state is", store.getState());
 });
+
 store.dispatch(addTodoAction);
+console.log(store.getState());
