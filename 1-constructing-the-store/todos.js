@@ -28,12 +28,27 @@ const toggleTodoActionCreator = (id) => {
   return toggleTodoAction;
 };
 
-// const addGoalAction = {
-//   type: "ADD_GOAL",
-// };
-// const removeGoalAction = {
-//   type: "REMOVE_GOAL",
-// };
+const addGoalActionCreator = (name) => {
+  const addGoalAction = {
+    type: "ADD_GOAL",
+    goal: {
+      id: null,
+      name: name,
+      complete: false,
+    },
+  };
+
+  return addGoalAction;
+};
+
+const removeGoalActionCreator = (id) => {
+  const removeGoalAction = {
+    type: "REMOVE_GOAL",
+    id: id,
+  };
+
+  return removeGoalAction;
+};
 
 function todos(state = [], action) {
   switch (action.type) {
@@ -48,7 +63,7 @@ function todos(state = [], action) {
 
     case "REMOVE_TODO":
       return state.filter((todo) => {
-        todo.id !== action.id;
+        return todo.id !== action.id;
       });
 
     case "TOGGLE_TODO":
@@ -60,7 +75,37 @@ function todos(state = [], action) {
           return { ...todo, complete: !todo.complete };
         }
       });
+    default:
+      return state;
   }
+}
+
+function goals(state = [], action) {
+  switch (action.type) {
+    case "ADD_GOAL":
+      let newId;
+      if (state.length === 0) {
+        newId = 1;
+      } else {
+        newId = state.length + 1;
+      }
+      return [...state, { ...action.goal, id: newId }];
+
+    case "REMOVE_GOAL":
+      return state.filter((goal) => {
+        return goal.id !== action.id;
+      });
+
+    default:
+      return state;
+  }
+}
+
+function combineReducers(state = { todos: [], goals: [] }, action) {
+  return {
+    todos: todos(state.todos, action),
+    goals: goals(state.goals, action),
+  };
 }
 
 function createStore(reducer) {
@@ -86,6 +131,7 @@ function createStore(reducer) {
   };
 
   const dispatch = (action) => {
+    // state = reducer(state, action);
     state = reducer(state, action);
     listeners.forEach((listener) => listener());
   };
@@ -97,17 +143,12 @@ function createStore(reducer) {
   };
 }
 
-const store = createStore(todos);
+const store = createStore(combineReducers);
 
 const unsubscribe = store.subscribe(() => {
   console.log("The new state is", store.getState());
 });
 
-store.dispatch(addTodoActionCreator("learn redux"));
+store.dispatch(addGoalActionCreator("train dogs"));
 store.dispatch(addTodoActionCreator("walk dogs"));
-
-const walkDogsId = store
-  .getState()
-  .find((todo) => todo.name === "walk dogs").id;
-
-store.dispatch(toggleTodoActionCreator(walkDogsId));
+store.dispatch(addTodoActionCreator("teach dogs new trick"));
