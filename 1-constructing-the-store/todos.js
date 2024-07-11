@@ -34,15 +34,18 @@ function createStore(reducer) {
   };
 }
 
-//APP CODE
+// APP CODE
+
+// actions
 const ADD_TODO = "ADD_TODO";
 const REMOVE_TODO = "REMOVE_TODO";
 const TOGGLE_TODO = "TOGGLE_TODO";
 const ADD_GOAL = "ADD_GOAL";
 const REMOVE_GOAL = "REMOVE_GOAL";
 
-const addTodoActionCreator = (name) => {
-  const addTodoAction = {
+// action creators
+const addTodoAction = (name) => {
+  return {
     type: ADD_TODO,
     todo: {
       id: null,
@@ -50,29 +53,23 @@ const addTodoActionCreator = (name) => {
       complete: false,
     },
   };
-
-  return addTodoAction;
 };
 
-const removeTodoActionCreator = (id) => {
-  const removeTodoAction = {
+const removeTodoAction = (id) => {
+  return {
     type: REMOVE_TODO,
     id: id,
   };
-
-  return removeTodoAction;
 };
-const toggleTodoActionCreator = (id) => {
-  const toggleTodoAction = {
+const toggleTodoAction = (id) => {
+  return {
     type: TOGGLE_TODO,
     id: id,
   };
-
-  return toggleTodoAction;
 };
 
-const addGoalActionCreator = (name) => {
-  const addGoalAction = {
+const addGoalAction = (name) => {
+  return {
     type: ADD_GOAL,
     goal: {
       id: null,
@@ -80,19 +77,16 @@ const addGoalActionCreator = (name) => {
       complete: false,
     },
   };
-
-  return addGoalAction;
 };
 
-const removeGoalActionCreator = (id) => {
-  const removeGoalAction = {
+const removeGoalAction = (id) => {
+  return {
     type: REMOVE_GOAL,
     id: id,
   };
-
-  return removeGoalAction;
 };
 
+// todos reducer
 function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
@@ -122,6 +116,7 @@ function todos(state = [], action) {
   }
 }
 
+// goals reducer
 function goals(state = [], action) {
   switch (action.type) {
     case ADD_GOAL:
@@ -138,11 +133,15 @@ function goals(state = [], action) {
         return goal.id !== action.id;
       });
 
+    // all reducers are invoked with each action that occurs
+    // when an action occurs in one reducer but not another, we need to return the uneffected portions of the state tree as they are
     default:
       return state;
   }
 }
 
+// initialize with an empty object to avoid iterating over undefined
+// combine reducers into a single object to isolate the different pieces of state that are related to each other
 function combineReducers(state = {}, action) {
   return {
     todos: todos(state.todos, action),
@@ -156,6 +155,6 @@ const unsubscribe = store.subscribe(() => {
   console.log("The new state is", store.getState());
 });
 
-store.dispatch(addGoalActionCreator("train dogs"));
-store.dispatch(addTodoActionCreator("walk dogs"));
-store.dispatch(addTodoActionCreator("teach dogs new trick"));
+store.dispatch(addGoalAction("train dogs"));
+store.dispatch(addTodoAction("walk dogs"));
+store.dispatch(addTodoAction("teach dogs new trick"));
