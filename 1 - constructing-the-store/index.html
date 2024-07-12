@@ -8,13 +8,15 @@
   <body>
     <div class="todos">
       <h1>Todos</h1>
-      <input type="text" class="todo_input" placeholder="Add Todo" />
-      <button id="todo_btn">Add Todo</button>
+      <input type="text" id="todoInput" placeholder="Add Todo" />
+      <button id="todoBtn">Add Todo</button>
+      <ul id="todos"></ul>
     </div>
     <div class="todos">
       <h1>Goals</h1>
-      <input type="text" class="goals_input" placeholder="Add Goal" />
-      <button id="goal_btn">Add Goal</button>
+      <input type="text" id="goalInput" placeholder="Add Goal" />
+      <button id="goalBtn">Add Goal</button>
+      <ul id="goals"></ul>
     </div>
     <script type="text/javascript">
       // LIBRARY CODE
@@ -174,9 +176,18 @@
         console.log("The new state is", store.getState());
       });
 
-      store.dispatch(addGoalAction("train dogs"));
-      store.dispatch(addTodoAction("walk dogs"));
-      store.dispatch(addTodoAction("teach dogs new trick"));
+      // DOM code
+
+      async function addTodo() {
+        const todoInput = document.getElementById("todoInput");
+        const name = todoInput.value;
+        todoInput.value = "";
+
+        store.dispatch(addTodoAction(name));
+      }
+
+      const addTodoButton = document.getElementById("todoBtn");
+      addTodoButton.addEventListener("click", addTodo);
     </script>
   </body>
 </html>
