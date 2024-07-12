@@ -75,6 +75,26 @@
         };
       };
 
+      const checker = (store) => (next) => (action) => {
+        if (
+          action.type === ADD_TODO &&
+          action.todo.name.toLowerCase().includes("bitcoin")
+          // action.todo.name.toLowerCase().indexOf("bitcoin") !== -1
+        ) {
+          return alert("no bitcoin todos");
+        }
+
+        if (
+          action.type === ADD_GOAL &&
+          action.goal.name.toLowerCase().includes("bitcoin")
+          // action.todo.name.toLowerCase().indexOf("bitcoin") !== -1
+        ) {
+          return alert("no bitcoin goals");
+        }
+
+        next(action);
+      };
+
       // Reducers
       function todos(state = [], action) {
         switch (action.type) {
@@ -118,7 +138,8 @@
         Redux.combineReducers({
           todos,
           goals,
-        })
+        }),
+        Redux.applyMiddleware(checker)
       );
 
       // Subscribers/Listeners
