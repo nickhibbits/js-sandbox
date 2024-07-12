@@ -1,3 +1,10 @@
+/* 
+This is a basic state managment library mirroring the structure of Redux.
+There is no UI, but you can still run this code to see how actions update the state.
+To see how this library handles events triggered by users to update the DOM and UI, checkout index.html.
+Note how similar the state management portion of that code is, even though we're explicity using Redux.
+*/
+
 // LIBRARY CODE
 function createStore(reducer) {
   // store should have 4 parts
