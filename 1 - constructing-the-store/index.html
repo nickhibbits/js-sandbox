@@ -19,12 +19,14 @@
       <ul id="goals"></ul>
     </div>
     <script type="text/javascript">
+      // helper functions
       function generateId() {
         return (
           Math.random().toString(16).substring(2) +
           new Date().getTime().toString(16)
         );
       }
+
       // store
       function createStore(reducer) {
         let state;
@@ -70,7 +72,6 @@
           },
         };
       };
-
       const removeTodoAction = (id) => {
         return {
           type: REMOVE_TODO,
@@ -83,7 +84,6 @@
           id: id,
         };
       };
-
       const addGoalAction = (name) => {
         return {
           type: ADD_GOAL,
@@ -94,7 +94,6 @@
           },
         };
       };
-
       const removeGoalAction = (id) => {
         return {
           type: REMOVE_GOAL,
@@ -150,6 +149,7 @@
 
       const store = createStore(combineReducers);
 
+      // Subscribers/Listeners
       store.subscribe(() => {
         const { goals, todos } = store.getState();
 
@@ -160,21 +160,49 @@
         goals.forEach(addGoalToDOM);
       });
 
+      store.subscribe(() => {
+        console.log("The new state is", store.getState());
+      });
+
+      // DOM Code
       function addTodoToDOM(todo) {
         const todoItem = document.createElement("li");
         todoItem.textContent = todo.name;
 
+        const removeBtn = createRemoveButton(() => {
+          store.dispatch(removeTodoAction(todo.id));
+        });
+
+        todoItem.appendChild(removeBtn);
+
+        todoItem.style.textDecoration = todo.complete ? "line-through" : "none";
+
+        enableTodoToggle(todoItem, todo);
         document.getElementById("todos").appendChild(todoItem);
+      }
+
+      function enableTodoToggle(element, todo) {
+        element.addEventListener("click", () => {
+          element.textDecoration = todo.complete ? "line-through" : "none";
+
+          store.dispatch(toggleTodoAction(todo.id));
+        });
       }
 
       function addGoalToDOM(goal) {
         const goalItem = document.createElement("li");
         goalItem.textContent = goal.name;
 
+        const removeBtn = createRemoveButton(() => {
+          store.dispatch(removeGoalAction(goal.id));
+        });
+
+        goalItem.appendChild(removeBtn);
+
         document.getElementById("goals").appendChild(goalItem);
       }
 
-      async function addTodo() {
+      function addTodo() {
         const todoInput = document.getElementById("todoInput");
         const name = todoInput.value;
         todoInput.value = "";
@@ -182,12 +210,20 @@
         store.dispatch(addTodoAction(name));
       }
 
-      async function addGoal() {
+      function addGoal() {
         const goalInput = document.getElementById("goalInput");
         const name = goalInput.value;
         goalInput.value = "";
 
         store.dispatch(addGoalAction(name));
+      }
+
+      function createRemoveButton(onClick) {
+        const removeButton = document.createElement("button");
+        removeButton.innerHTML = "X";
+        removeButton.addEventListener("click", onClick);
+
+        return removeButton;
       }
 
       const addTodoButton = document.getElementById("todoBtn");
