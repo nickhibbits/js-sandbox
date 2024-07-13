@@ -5,5 +5,5 @@ Exploring various JavaScript techniques and libraries. Documenting the research 
 
 ## References
 
-[ui.dev](https://ui.dev/c/redux)
+[ui.dev](https://ui.dev/c/redux)\
 [10 Advanced JavaScript Tricks you don't know](https://medium.com/@bjprajapati381/10-advanced-javascript-tricks-you-dont-know-f1929e40703d)
