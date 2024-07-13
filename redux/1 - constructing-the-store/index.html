@@ -75,11 +75,11 @@
         };
       };
 
+      // middleware preventing user from adding todo or goal with the word bitcoin
       const checker = (store) => (next) => (action) => {
         if (
           action.type === ADD_TODO &&
           action.todo.name.toLowerCase().includes("bitcoin")
-          // action.todo.name.toLowerCase().indexOf("bitcoin") !== -1
         ) {
           return alert("no bitcoin todos");
         }
@@ -87,12 +87,19 @@
         if (
           action.type === ADD_GOAL &&
           action.goal.name.toLowerCase().includes("bitcoin")
-          // action.todo.name.toLowerCase().indexOf("bitcoin") !== -1
         ) {
           return alert("no bitcoin goals");
         }
 
         next(action);
+      };
+
+      const logger = (store) => (next) => (action) => {
+        console.group(action.type);
+        console.log("The action: ", action);
+        const result = next(action);
+        console.log("The new state: ", store.getState());
+        console.groupEnd();
       };
 
       // Reducers
@@ -139,7 +146,7 @@
           todos,
           goals,
         }),
-        Redux.applyMiddleware(checker)
+        Redux.applyMiddleware(checker, logger)
       );
 
       // Subscribers/Listeners
@@ -151,10 +158,6 @@
 
         todos.forEach(addTodoToDOM);
         goals.forEach(addGoalToDOM);
-      });
-
-      store.subscribe(() => {
-        console.log("The new state is", store.getState());
       });
 
       // DOM Code
