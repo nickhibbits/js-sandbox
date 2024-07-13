@@ -1,6 +1,6 @@
 # js-sandbox
 
-Exploring various JavaScript techniques and libraries.\ 
+Exploring various JavaScript techniques and libraries.
 
 Documenting the research for ease of understanding and ease of reference in the future. 🚀
 
