@@ -1,3 +1,5 @@
-# redux-sandbox
+# js-sandbox
 
-Practice projects to enhance proficieny with [Redux](https://redux.js.org/). Sourced from [ui.dev](https://ui.dev)
+Exploring various JavaScript techniques and libraries. Consolidiating and documenting the research for ease of understanding and ease of reference in the future. 🚀
+
+
