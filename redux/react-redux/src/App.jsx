@@ -1,7 +1,8 @@
 import "./App.css";
+import Todos from "./Todos";
 
 function App() {
-  return <>Yo</>;
+  return <Todos />;
 }
 
 export default App;
