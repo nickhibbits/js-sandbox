@@ -2,11 +2,11 @@ import React from "react";
 import TodosList from "./TodosList";
 import GoalsList from "./GoalsList";
 
-function Todos() {
+function Todos(store) {
   return (
     <>
-      <TodosList />
-      <GoalsList />
+      <TodosList store={store} />
+      <GoalsList store={store} />
     </>
   );
 }
