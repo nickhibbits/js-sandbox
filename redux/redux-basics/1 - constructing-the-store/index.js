@@ -13,7 +13,7 @@ function createStore(reducer) {
   // store should have 4 parts
   // 1. The state
   // 2. Get the state -- getState()
-  // 3. Listen to state changes -- subscribe()
+  // 3. Listen to state changes -- subscribe()k
   // 4. Update the state
 
   let state;

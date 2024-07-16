@@ -1,13 +1,20 @@
-import React from "react";
-import TodosList from "./TodosList";
-import GoalsList from "./GoalsList";
+import { Context } from "./provider";
 
-function Todos(store) {
+import GoalsContainer from "./GoalsContainer";
+import TodosContainer from "./TodosContainer";
+
+function Todos() {
   return (
-    <>
-      <TodosList store={store} />
-      <GoalsList store={store} />
-    </>
+    <Context.Consumer>
+      {(store) => {
+        return (
+          <>
+            <TodosContainer store={store} />
+            <GoalsContainer store={store} />
+          </>
+        );
+      }}
+    </Context.Consumer>
   );
 }
 

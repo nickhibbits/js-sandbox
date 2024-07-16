@@ -1,15 +1,18 @@
 import React, { useRef } from "react";
 import { generateId } from "../../utils";
+import List from "../List";
 
-function TodosList(store) {
+function TodosContainer(store) {
   const todoInputRef = useRef("");
+
+  const { todos, dispatch } = store;
 
   const handleClick = (e) => {
     e.preventDefault();
     const name = todoInputRef.current.value;
     todoInputRef.current.value = "";
 
-    store.dispatch(
+    dispatch(
       addTodoAction({
         id: generateId(),
         name,
@@ -24,10 +27,10 @@ function TodosList(store) {
         <h1>Todos</h1>
         <input type="text" placeholder="Add Todo" ref={todoInputRef} />
         <button onClick={handleClick}>Add Todo</button>
-        <ul id="todos"></ul>
+        <List items={todos} removeItem={() => dispatch(removeTodoAction)} />
       </div>
     </>
   );
 }
 
-export default TodosList;
+export default TodosContainer;
