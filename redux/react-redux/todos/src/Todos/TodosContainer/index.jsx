@@ -33,4 +33,8 @@ function TodosContainer(store) {
   );
 }
 
-export default TodosContainer;
+const ConnectedTodosContainer = connect((state) => ({
+  todos: state.todos,
+}))(TodosContainer);
+
+export default ConnectedTodosContainer;

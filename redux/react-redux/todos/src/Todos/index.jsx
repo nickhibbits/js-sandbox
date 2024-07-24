@@ -1,20 +1,12 @@
-import { Context } from "./provider";
-
 import GoalsContainer from "./GoalsContainer";
-import TodosContainer from "./TodosContainer";
+import ConnectedTodosContainer from "./TodosContainer";
 
-function Todos() {
+function Todos(props) {
   return (
-    <Context.Consumer>
-      {(store) => {
-        return (
-          <>
-            <TodosContainer store={store} />
-            <GoalsContainer store={store} />
-          </>
-        );
-      }}
-    </Context.Consumer>
+    <>
+      <ConnectedTodosContainer store={store} />
+      {/* <GoalsContainer store={store} /> */}
+    </>
   );
 }
 

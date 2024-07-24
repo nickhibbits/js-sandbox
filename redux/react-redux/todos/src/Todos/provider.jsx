@@ -1,5 +1,5 @@
 import React from "react";
-import { store } from "../../utils/store";
+import { store } from "../utils/store";
 
 export const Context = React.createContext(store);
 
