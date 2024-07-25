@@ -1,4 +1,4 @@
-import { API } from "../goals-todos-api";
+import API from "../utils/api";
 
 export const RECEIVE_DATA = "RECEIVE_DATA";
 

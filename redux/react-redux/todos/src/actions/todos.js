@@ -1,4 +1,4 @@
-import { API } from "../goals-todos-api";
+import API from "../utils/api";
 
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
