@@ -28,7 +28,7 @@ const toggleTodo = (id) => {
 };
 
 // async actions/thunks
-export function handleDeleteTodo() {}
+export function handleDeleteTodo(id) {}
 
 export function handleAddTodo() {}
 

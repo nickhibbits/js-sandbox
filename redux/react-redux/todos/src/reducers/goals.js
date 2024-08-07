@@ -1,4 +1,4 @@
-function goals(state = [], action) {
+export default function goals(state = [], action) {
   switch (action.type) {
     case ADD_GOAL:
       return [...state, action.goal];
@@ -7,6 +7,9 @@ function goals(state = [], action) {
       return state.filter((goal) => {
         return goal.id !== action.id;
       });
+
+    case RECEIVE_DATA:
+      return action.goals;
 
     default:
       return state;

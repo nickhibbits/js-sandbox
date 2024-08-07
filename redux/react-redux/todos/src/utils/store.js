@@ -1,4 +1,4 @@
-import { combineReducers, connect } from "redux";
+import { combineReducers } from "redux";
 
 // middleware preventing user from adding todo or goal with the word bitcoin
 

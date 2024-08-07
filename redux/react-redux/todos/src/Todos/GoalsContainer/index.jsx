@@ -1,5 +1,4 @@
 import React from "react";
-import { generateId } from "../../utils";
 import List from "../List";
 
 function GoalsContainer(store) {

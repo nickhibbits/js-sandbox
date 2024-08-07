@@ -4,7 +4,7 @@ import ConnectedTodosContainer from "./TodosContainer";
 function Todos(props) {
   return (
     <>
-      <ConnectedTodosContainer store={store} />
+      <ConnectedTodosContainer store={store} /> 
       {/* <GoalsContainer store={store} /> */}
     </>
   );

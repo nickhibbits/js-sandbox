@@ -16,6 +16,8 @@ function todos(state = [], action) {
           return { ...todo, complete: !todo.complete };
         }
       });
+    case RECEIVE_DATA:
+      return action.todos;
     default:
       return state;
   }
