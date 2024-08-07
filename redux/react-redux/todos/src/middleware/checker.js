@@ -1,4 +1,4 @@
-const checker = (store) => (next) => (action) => {
+export const checker = (store) => (next) => (action) => {
   if (
     action.type === ADD_TODO &&
     action.todo.name.toLowerCase().includes("bitcoin")

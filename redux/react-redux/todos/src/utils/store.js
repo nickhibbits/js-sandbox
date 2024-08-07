@@ -1,13 +1,14 @@
 import { combineReducers } from "redux";
+import { thunk } from "../middleware/thunk";
+import { logger } from "../middleware/logger";
+import { checker } from "../middleware/checker";
 
 // middleware preventing user from adding todo or goal with the word bitcoin
-
-// Reducers
 
 export const store = Redux.createStore(
   combineReducers({
     todos,
     goals,
   }),
-  Redux.applyMiddleware(checker, logger)
+  Redux.applyMiddleware(checker, logger, thunk)
 );

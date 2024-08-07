@@ -28,8 +28,33 @@ const toggleTodo = (id) => {
 };
 
 // async actions/thunks
-export function handleDeleteTodo(id) {}
+export function handleDeleteTodo(todo) {
+  return (dispatch) => {
+    dispatch(removeTodo(todo.id));
+    return API.deleteTodo(todo.id).catch(() => {
+      dispatch(addTodo(todo.name));
+      alert("error deleting todo, please try again later");
+    });
+  };
+}
 
-export function handleAddTodo() {}
+export function handleAddTodo(name) {
+  return (dispatch) => {
+    return API.saveTodo(name)
+      .then(() => {
+        console.log("success", success);
+        dispatch(addTodo(name));
+      })
+      .catch(() => {
+        alert("error adding todo, try again");
+      });
+  };
+}
 
-export function handleToggle() {}
+export function handleToggle() {
+  return (dispatch) => {
+    return API.saveTodoToggle(id).catch(() => {
+      dispatch(toggleTodo(id));
+    });
+  };
+}

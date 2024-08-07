@@ -52,7 +52,7 @@ export const API = {
     });
   },
 
-  saveTodo: () => {
+  saveTodo: (name) => {
     return new Promise((res, rej) => {
       setTimeout(() => {
         const todo = {
