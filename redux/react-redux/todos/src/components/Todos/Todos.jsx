@@ -1,3 +1,12 @@
+import { connect } from "react-redux";
+import {
+  handleAddTodo,
+  handleDeleteTodo,
+  handleToggleTodo,
+} from "../../actions/todos";
+
+import List from "../List/List";
+
 function Todos(props) {
   const todoInputRef = useRef("");
 
@@ -34,4 +43,6 @@ function Todos(props) {
   );
 }
 
-export default Todos;
+export default connect((state) => ({
+  todos: state.todos,
+}))(Todos);

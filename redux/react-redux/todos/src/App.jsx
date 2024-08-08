@@ -1,10 +1,12 @@
-import { API } from "./utils/api";
 import { useEffect } from "react";
-import "./App.css";
-import Todos from "./Todos";
 import { handleInitialData } from "./actions/shared";
-//
-export default function App() {
+import { connect } from "react-redux";
+
+import ConnectedTodos from "./components/Todos/Todos";
+
+import "./App.css";
+
+function App() {
   const { loading, dispatch } = props;
 
   useEffect(() => {
@@ -17,12 +19,11 @@ export default function App() {
 
   return (
     <>
-      <Todos />
-      <Goals />
+      <ConnectedTodos />
     </>
   );
 }
 
-// export const ConnectedApp = connect((state) => ({
-//   loading: state.loading,
-// }))(App);
+export default connect((state) => ({
+  loading: state.loading,
+}))(App);

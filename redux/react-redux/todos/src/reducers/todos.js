@@ -1,5 +1,5 @@
 import { RECEIVE_DATA } from "../actions/shared";
-import { ADD_TODO, TOGGLE_TODO } from "../actions/todos";
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from "../actions/todos";
 
 function todos(state = [], action) {
   switch (action.type) {
@@ -25,3 +25,5 @@ function todos(state = [], action) {
       return state;
   }
 }
+
+export default todos;

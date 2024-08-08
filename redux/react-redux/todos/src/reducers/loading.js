@@ -8,3 +8,5 @@ function loading(state = true, action) {
       return state;
   }
 }
+
+export default loading;
