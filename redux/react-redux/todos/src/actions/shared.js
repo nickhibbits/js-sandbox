@@ -10,4 +10,13 @@ function receiveData(todos, goals) {
   };
 }
 
-function handleInitialData() {}
+export function handleInitialData() {
+  return (dispatch) => {
+    Promise.all([API.fetchTodos(), API.fetchGoals()]).then(([todos, goals]) => {
+      console.log("todos", todos);
+      console.log("goals", goals);
+
+      dispatch(receiveData(todos, goals));
+    });
+  };
+}

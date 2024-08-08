@@ -38,23 +38,26 @@ export function handleDeleteTodo(todo) {
   };
 }
 
-export function handleAddTodo(name) {
+export function handleAddTodo(name, cb) {
   return (dispatch) => {
     return API.saveTodo(name)
       .then(() => {
-        console.log("success", success);
         dispatch(addTodo(name));
+        cb();
       })
       .catch(() => {
-        alert("error adding todo, try again");
+        alert("Error. Try again");
       });
   };
 }
 
-export function handleToggle() {
+export function handleToggleTodo(id) {
   return (dispatch) => {
+    dispatch(toggleTodo(id));
+
     return API.saveTodoToggle(id).catch(() => {
       dispatch(toggleTodo(id));
+      alert("Error. Try again");
     });
   };
 }

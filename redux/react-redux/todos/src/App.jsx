@@ -2,24 +2,25 @@ import { API } from "./utils/api";
 import { useEffect } from "react";
 import "./App.css";
 import Todos from "./Todos";
+import { handleInitialData } from "./actions/shared";
 //
 export default function App() {
   const { loading, dispatch } = props;
 
   useEffect(() => {
-    Promise.all([API.fetchTodos(), API.fetchGoals()]).then(([todos, goals]) => {
-      console.log("todos", todos);
-      console.log("goals", goals);
-
-      store.dispatch(receiveData(todos, goals));
-    });
+    dispatch(handleInitialData());
   }, []);
 
   if (loading) {
     return <h3>Loading</h3>;
   }
 
-  return <Todos />;
+  return (
+    <>
+      <Todos />
+      <Goals />
+    </>
+  );
 }
 
 // export const ConnectedApp = connect((state) => ({

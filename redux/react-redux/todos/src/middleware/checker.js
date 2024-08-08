@@ -1,3 +1,5 @@
+import { ADD_TODO } from "../actions/todos";
+
 export const checker = (store) => (next) => (action) => {
   if (
     action.type === ADD_TODO &&
@@ -6,12 +8,12 @@ export const checker = (store) => (next) => (action) => {
     return alert("no bitcoin todos");
   }
 
-  if (
-    action.type === ADD_GOAL &&
-    action.goal.name.toLowerCase().includes("bitcoin")
-  ) {
-    return alert("no bitcoin goals");
-  }
+  // if (
+  //   action.type === ADD_GOAL &&
+  //   action.goal.name.toLowerCase().includes("bitcoin")
+  // ) {
+  //   return alert("no bitcoin goals");
+  // }
 
   next(action);
 };

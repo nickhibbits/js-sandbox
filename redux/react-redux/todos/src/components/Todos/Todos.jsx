@@ -1,9 +1,4 @@
-import React, { useRef } from "react";
-
-import List from "../List";
-import { handleAddTodo, handleDeleteTodo } from "../../actions/todos";
-
-function TodosContainer(store) {
+function Todos(props) {
   const todoInputRef = useRef("");
 
   const { todos, dispatch } = store;
@@ -11,9 +6,8 @@ function TodosContainer(store) {
   const handleAdd = (e) => {
     e.preventDefault();
     const name = todoInputRef.current.value;
-    todoInputRef.current.value = "";
 
-    dispatch(handleAddTodo(name));
+    dispatch(handleAddTodo(name, () => (todoInputRef.current.value = "")));
   };
 
   const handleDelete = (todo) => {
@@ -40,8 +34,4 @@ function TodosContainer(store) {
   );
 }
 
-const ConnectedTodosContainer = connect((state) => ({
-  todos: state.todos,
-}))(TodosContainer);
-
-export default ConnectedTodosContainer;
+export default Todos;

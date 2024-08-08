@@ -1,3 +1,6 @@
+import { RECEIVE_DATA } from "../actions/shared";
+import { ADD_TODO, TOGGLE_TODO } from "../actions/todos";
+
 function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:

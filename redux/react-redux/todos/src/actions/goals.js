@@ -6,11 +6,7 @@ export const REMOVE_GOAL = "REMOVE_GOAL";
 const addGoal = (name) => {
   return {
     type: ADD_GOAL,
-    goal: {
-      id: null,
-      name: name,
-      complete: false,
-    },
+    goal,
   };
 };
 const removeGoal = (id) => {

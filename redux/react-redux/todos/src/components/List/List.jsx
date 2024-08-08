@@ -1,5 +1,4 @@
 import React from "react";
-import { API } from "../../utils/api";
 
 function List(items, removeItem, toggleItem) {
   return (
