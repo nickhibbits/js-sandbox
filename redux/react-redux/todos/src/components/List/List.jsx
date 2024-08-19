@@ -1,11 +1,12 @@
 import React from "react";
 
-function List(items, removeItem, toggleItem) {
+function List({ items, removeItem, toggleItem }) {
+  console.log("items", items);
   return (
     <ul>
       {items.map((item) => {
         return (
-          <li>
+          <li key={item.id}>
             <p
               className={`name ${item.complete ? "crossthrough" : null}`}
               onClick={() => toggleItem(id)}

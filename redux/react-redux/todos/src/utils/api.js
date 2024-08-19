@@ -9,28 +9,28 @@ export const API = {
 
   goals: [
     {
-      id: () => this.generateId(),
+      id: this.generateId(),
       name: "Learn Redux",
     },
     {
-      id: () => this.generateId(),
+      id: this.generateId(),
       name: "Read 50 books this year",
     },
   ],
   todos: [
     {
-      id: () => this.generateId(),
+      id: this.generateId(),
       name: "Walk the dog",
       complete: false,
     },
     {
-      id: () => this.generateId(),
+      id: this.generateId(),
       name: "Wash the car",
       complete: false,
     },
     {
-      id: () => this.generateId(),
-      name: "Go to the gym",
+      id: this.generateId(),
+      name: "Go to thde gym",
       complete: true,
     },
   ],
