@@ -1,35 +1,35 @@
+const generateId = () => {
+  return Math.random().toString(36).substring(2);
+};
+
 export const API = {
   fail: () => {
     return Math.floor(Math.random() * (5 - 1)) === 3;
   },
 
-  generateId: () => {
-    return Math.random().toString(36).substring(2);
-  },
-
   goals: [
     {
-      id: this.generateId(),
+      id: generateId(),
       name: "Learn Redux",
     },
     {
-      id: this.generateId(),
+      id: generateId(),
       name: "Read 50 books this year",
     },
   ],
   todos: [
     {
-      id: this.generateId(),
+      id: generateId(),
       name: "Walk the dog",
       complete: false,
     },
     {
-      id: this.generateId(),
+      id: generateId(),
       name: "Wash the car",
       complete: false,
     },
     {
-      id: this.generateId(),
+      id: generateId(),
       name: "Go to thde gym",
       complete: true,
     },
