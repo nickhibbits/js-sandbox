@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { handleInitialData } from "./actions/shared";
+import { handleInitialData } from "@/actions/shared";
 import { connect } from "react-redux";
 
-import Todos from "./components/Todos/Todos";
+import Todos from "@/components/Todos/Todos";
 
-import "./App.css";
+import "@/App.css";
 
 function App(props) {
   const { loading, dispatch } = props;

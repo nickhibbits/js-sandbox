@@ -1,9 +1,9 @@
-import React from "react";
+import "@/styles/list.scss";
 
 function List({ items, removeItem, toggleItem }) {
   console.log("items", items);
   return (
-    <ul>
+    <ul className="ul">
       {items.map((item) => {
         return (
           <li key={item.id}>

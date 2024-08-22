@@ -3,7 +3,7 @@ import {
   handleAddTodo,
   handleDeleteTodo,
   handleToggleTodo,
-} from "../../actions/todos";
+} from "@/actions/todos";
 
 import List from "../List/List";
 import { useRef } from "react";
