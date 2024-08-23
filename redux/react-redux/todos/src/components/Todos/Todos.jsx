@@ -1,12 +1,14 @@
 import { connect } from "react-redux";
+import { useRef } from "react";
 import {
   handleAddTodo,
   handleDeleteTodo,
   handleToggleTodo,
 } from "@/actions/todos";
 
-import List from "../List/List";
-import { useRef } from "react";
+import List from "@/components/List/List";
+
+import "@/components/Todos/todos.scss";
 
 function Todos(props) {
   const todoInputRef = useRef(null);
@@ -31,10 +33,19 @@ function Todos(props) {
 
   return (
     <>
-      <div>
-        <h1>Todos</h1>
-        <input type="text" placeholder="Add Todo" ref={todoInputRef} />
-        <button onClick={addItem}>Add Todo</button>
+      <div className="todos_wrapper ">
+        <h1 className="flex flex_start">Todos</h1>
+        <div className="add_todo_wrapper flex flex_space">
+          <input
+            className="input"
+            type="text"
+            placeholder="Add Todo"
+            ref={todoInputRef}
+          />
+          <button className=".button" onClick={addItem}>
+            Add Todo
+          </button>
+        </div>
         <List items={todos} removeItem={removeItem} toggleItem={toggleItem} />
       </div>
     </>

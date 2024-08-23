@@ -7,7 +7,7 @@ import reducer from "@/reducers/index";
 
 import App from "./App";
 
-import "./index.css";
+import "@/index.scss";
 
 const store = configureStore({
   reducer,

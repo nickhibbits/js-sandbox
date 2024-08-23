@@ -1,12 +1,12 @@
-import "@/styles/list.scss";
+import "@/components/List/list.scss";
 
 function List({ items, removeItem, toggleItem }) {
   console.log("items", items);
   return (
-    <ul className="ul">
+    <ul className="ul flex flex_column">
       {items.map((item) => {
         return (
-          <li key={item.id}>
+          <li className="li flex flex_space" key={item.id}>
             <p
               className={`name ${item.complete ? "crossthrough" : null}`}
               onClick={() => toggleItem(id)}

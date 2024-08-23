@@ -1,0 +1,17 @@
+.add_todo_wrapper {
+  padding-bottom: 1rem;
+  width: 20rem;
+
+  .input {
+    width: 15rem;
+    padding: 0.3rem;
+  }
+}
+
+li {
+  width: 100%;
+}
+
+ul {
+  gap: 0.5rem;
+}
