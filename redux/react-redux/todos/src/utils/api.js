@@ -52,7 +52,7 @@ export const API = {
     });
   },
 
-  saveTodo: (name) => {
+  saveTodo(name) {
     return new Promise((res, rej) => {
       setTimeout(() => {
         const todo = {
@@ -60,13 +60,15 @@ export const API = {
           name: name,
           complete: false,
         };
-        todos = todos.concat([todo]);
-        fail() ? rej(todo) : res(todo);
+        console.log("saveTodo ✅", todo);
+        this.todos = this.todos.concat([todo]);
+        // this.fail() ? rej(todo) : res(todo);
+        res(todo);
       }, 300);
     });
   },
 
-  saveGoal: (name) => {
+  saveGoal(name) {
     return new Promise((res, rej) => {
       setTimeout(() => {
         const goal = {

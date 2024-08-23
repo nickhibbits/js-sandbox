@@ -48,11 +48,11 @@ button {
   padding: 0.3rem;
   background-color: white;
   border: none;
-  transition: 0.3s ease;
+  transition: 0.1s ease;
+  border-radius: 5px;
 
   &:hover {
     outline: solid 1px black;
-    border-radius: 5px;
     cursor: pointer;
   }
 }

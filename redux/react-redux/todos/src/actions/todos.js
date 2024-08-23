@@ -4,14 +4,10 @@ export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";
 
-const addTodo = (name) => {
+const addTodo = (todo) => {
   return {
     type: ADD_TODO,
-    todo: {
-      id: generateId(),
-      name: name,
-      complete: false,
-    },
+    todo,
   };
 };
 const removeTodo = (id) => {
@@ -41,8 +37,8 @@ export function handleDeleteTodo(todo) {
 export function handleAddTodo(name, cb) {
   return (dispatch) => {
     return API.saveTodo(name)
-      .then(() => {
-        dispatch(addTodo(name));
+      .then((res) => {
+        dispatch(addTodo(res));
         cb();
       })
       .catch(() => {
