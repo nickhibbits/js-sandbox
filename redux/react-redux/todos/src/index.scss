@@ -1,0 +1,58 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+
+  &_column {
+    flex-direction: column;
+  }
+
+  &_left {
+    justify-content: flex-start;
+  }
+
+  &_right {
+    justify-content: flex-end;
+  }
+
+  &_center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_space {
+    justify-content: space-between;
+  }
+}
+
+button {
+  padding: 0.3rem;
+  background-color: white;
+  border: none;
+  transition: 0.3s ease;
+
+  &:hover {
+    outline: solid 1px black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
