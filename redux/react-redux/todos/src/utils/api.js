@@ -3,7 +3,7 @@ const generateId = () => {
 };
 
 export const API = {
-  fail: () => {
+  fail() {
     return Math.floor(Math.random() * (5 - 1)) === 3;
   },
 
@@ -56,7 +56,7 @@ export const API = {
     return new Promise((res, rej) => {
       setTimeout(() => {
         const todo = {
-          id: generateId(),
+          id: this.generateId(),
           name: name,
           complete: false,
         };
@@ -72,43 +72,43 @@ export const API = {
     return new Promise((res, rej) => {
       setTimeout(() => {
         const goal = {
-          id: generateId(),
+          id: this.generateId(),
           name: name,
         };
-        goals = goals.concat([goal]);
-        fail() ? rej(goal) : res(goal);
+        this.goals = this.goals.concat([goal]);
+        this.fail() ? rej(goal) : res(goal);
       }, 300);
     });
   },
 
-  deleteGoal: (id) => {
+  deleteGoal(id) {
     return new Promise((res, rej) => {
       setTimeout(() => {
         goals = goals.filter((goal) => goal.id !== id);
-        fail() ? rej() : res(goals);
+        this.fail() ? rej() : res(goals);
       }, 300);
     });
   },
 
-  deleteTodo: (id) => {
+  deleteTodo(id) {
     return new Promise((res, rej) => {
       setTimeout(() => {
-        todos = todos.filter((todo) => todo.id !== id);
-        fail() ? rej() : res(todos);
+        this.todos = this.todos.filter((todo) => todo.id !== id);
+        this.fail() ? rej() : res(this.todos);
       }, 300);
     });
   },
 
-  saveTodoToggle: (id) => {
+  saveTodoToggle(id) {
     return new Promise((res, rej) => {
       setTimeout(() => {
-        todos = todos.map((todo) =>
+        this.todos = this.todos.map((todo) =>
           todo.id !== id
             ? todo
             : Object.assign({}, todo, { complete: !todo.complete })
         );
 
-        fail() ? rej() : res(todos);
+        this.fail() ? rej() : res(this.todos);
       }, 300);
     });
   },
